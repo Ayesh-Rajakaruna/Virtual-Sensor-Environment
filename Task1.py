@@ -3,6 +3,7 @@ import paho.mqtt.client as paho
 import numpy as np
 import threading
 import keyboard
+import os
 class mqtt_server:
     def __init__(self, broker = 'pldindustries.com', port = 1883, topic = '/group13x', client_id = 'Group_13', username = 'app_client', password = 'app@1234', break_condition = 0):
         # Server information
@@ -48,6 +49,7 @@ class mqtt_server:
         self.client.disconnect() #disconnect
             
 if __name__ == "__main__":
+    os.system("start \"\" http://192.168.8.189:1880/ui/")
     server = mqtt_server()
     break_loop = threading.Thread(target=server.change_break_condition, args=())
     Gas = threading.Thread(target=server.thread_function, args=(35,30,40, 'Gas Sensors', 1, "/Gas01", 10))
