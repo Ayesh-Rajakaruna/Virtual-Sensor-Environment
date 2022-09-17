@@ -24,7 +24,8 @@
         "y": 120,
         "wires": [
             [
-                "c9338c0310b0ea1f"
+                "c9338c0310b0ea1f",
+                "b6721124bb373eea"
             ]
         ]
     },
@@ -200,7 +201,7 @@
         "type": "function",
         "z": "6c2f1c52156d2c65",
         "name": "function 1",
-        "func": "return msg;",
+        "func": "var val = msg.payload.current_sensor_val\nmsg.payload = val\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -222,7 +223,7 @@
         "type": "function",
         "z": "6c2f1c52156d2c65",
         "name": "function 2",
-        "func": "return msg;",
+        "func": "var val = msg.payload.current_sensor_val\nmsg.payload = val\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -244,7 +245,7 @@
         "type": "function",
         "z": "6c2f1c52156d2c65",
         "name": "function 3",
-        "func": "return msg;",
+        "func": "var val = msg.payload.current_sensor_val\nmsg.payload = val\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -450,7 +451,7 @@
         "type": "function",
         "z": "6c2f1c52156d2c65",
         "name": "function 4",
-        "func": "return msg;",
+        "func": "var val = msg.payload.current_sensor_val\nmsg.payload = val\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -580,7 +581,7 @@
         "type": "function",
         "z": "6c2f1c52156d2c65",
         "name": "function 5",
-        "func": "return msg;",
+        "func": "var val = msg.payload.current_sensor_val\nmsg.payload = val\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -710,7 +711,7 @@
         "type": "function",
         "z": "6c2f1c52156d2c65",
         "name": "function 6",
-        "func": "return msg;",
+        "func": "var val = msg.payload.current_sensor_val\nmsg.payload = val\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -840,7 +841,7 @@
         "type": "function",
         "z": "6c2f1c52156d2c65",
         "name": "function 7",
-        "func": "return msg;",
+        "func": "var val = msg.payload.current_sensor_val\nmsg.payload = val\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1034,6 +1035,22 @@
         "className": "",
         "x": 640,
         "y": 840,
+        "wires": []
+    },
+    {
+        "id": "b6721124bb373eea",
+        "type": "debug",
+        "z": "6c2f1c52156d2c65",
+        "name": "debug 8",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 240,
+        "y": 40,
         "wires": []
     },
     {

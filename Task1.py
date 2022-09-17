@@ -4,6 +4,7 @@ import numpy as np
 import threading
 import keyboard
 import os
+import json
 class mqtt_server:
     def __init__(self, broker = 'pldindustries.com', port = 1883, topic = '/group13x', client_id = 'Group_13', username = 'app_client', password = 'app@1234', break_condition = 0):
         # Server information
@@ -40,7 +41,13 @@ class mqtt_server:
             if (sensor_val>upper_val):
                 sensor_val = upper_val
             print("Publishing {} value: {}".format(name, sensor_val))
-            self.client.publish(sensor_topic, sensor_val, qos = 0) # Public
+            data = {}
+            data['lower_sensor_val'] = '{}'.format(lower_val)
+            data['current_sensor_val'] = '{}'.format(sensor_val)
+            data['upper_sensor_val'] = '{}'.format(upper_val)
+            data['name'] = '{}'.format(name)
+            json_data = json.dumps(data)
+            self.client.publish(sensor_topic, json_data, qos = 0) # Public
             sensor_previous_val = sensor_val #assigning sensor value for sensor previous value
             if self.break_condition == 1:
                 break
