@@ -1,0 +1,297 @@
+[
+    {
+        "id": "6c2f1c52156d2c65",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "8c891787f9f1a44c",
+        "type": "mqtt in",
+        "z": "6c2f1c52156d2c65",
+        "name": "Gas Sensors",
+        "topic": "/group13x/Gas01",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "c7dd5e1006bb1df9",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 110,
+        "y": 120,
+        "wires": [
+            [
+                "c6feec585185c785"
+            ]
+        ]
+    },
+    {
+        "id": "57a69e9137388c54",
+        "type": "mqtt in",
+        "z": "6c2f1c52156d2c65",
+        "name": "Smoke Sensors",
+        "topic": "/group13x/Smoke01",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "c7dd5e1006bb1df9",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 120,
+        "y": 160,
+        "wires": [
+            [
+                "7e026372d20865e0"
+            ]
+        ]
+    },
+    {
+        "id": "7f847524de3f41cf",
+        "type": "mqtt in",
+        "z": "6c2f1c52156d2c65",
+        "name": "Security System Status",
+        "topic": "/group13x/Security01",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "c7dd5e1006bb1df9",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 140,
+        "y": 200,
+        "wires": [
+            [
+                "7ad78a05aff48ed0"
+            ]
+        ]
+    },
+    {
+        "id": "0fb82fe24268893c",
+        "type": "mqtt in",
+        "z": "6c2f1c52156d2c65",
+        "name": "Temperature sensor",
+        "topic": "/group13x/Temperature01",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "c7dd5e1006bb1df9",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 130,
+        "y": 240,
+        "wires": [
+            [
+                "ee915cbc68ba6b65"
+            ]
+        ]
+    },
+    {
+        "id": "2af3b4897fa6b886",
+        "type": "mqtt in",
+        "z": "6c2f1c52156d2c65",
+        "name": "Humidity sensor",
+        "topic": "/group13x/Humidity01",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "c7dd5e1006bb1df9",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 120,
+        "y": 280,
+        "wires": [
+            [
+                "38eb0dcc0d535a79"
+            ]
+        ]
+    },
+    {
+        "id": "3a7b54cd0af285ce",
+        "type": "mqtt in",
+        "z": "6c2f1c52156d2c65",
+        "name": "Motion Sensors",
+        "topic": "/group13x/Motion01",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "c7dd5e1006bb1df9",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 120,
+        "y": 320,
+        "wires": [
+            [
+                "b342bee97ee52ecd"
+            ]
+        ]
+    },
+    {
+        "id": "11fd4cbbcf1805ff",
+        "type": "mqtt in",
+        "z": "6c2f1c52156d2c65",
+        "name": "Power consumption ",
+        "topic": "/group13x/Power01",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "c7dd5e1006bb1df9",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 130,
+        "y": 360,
+        "wires": [
+            [
+                "81c2b2e2a509420b"
+            ]
+        ]
+    },
+    {
+        "id": "c6feec585185c785",
+        "type": "debug",
+        "z": "6c2f1c52156d2c65",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 360,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "7e026372d20865e0",
+        "type": "debug",
+        "z": "6c2f1c52156d2c65",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 360,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "7ad78a05aff48ed0",
+        "type": "debug",
+        "z": "6c2f1c52156d2c65",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 360,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "ee915cbc68ba6b65",
+        "type": "debug",
+        "z": "6c2f1c52156d2c65",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 360,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "38eb0dcc0d535a79",
+        "type": "debug",
+        "z": "6c2f1c52156d2c65",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 360,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "b342bee97ee52ecd",
+        "type": "debug",
+        "z": "6c2f1c52156d2c65",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 360,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "81c2b2e2a509420b",
+        "type": "debug",
+        "z": "6c2f1c52156d2c65",
+        "name": "debug 7",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 360,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "c7dd5e1006bb1df9",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "pldindustries.com",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    }
+]
