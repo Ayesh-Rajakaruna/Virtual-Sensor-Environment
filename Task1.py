@@ -4,15 +4,15 @@ import numpy as np
 import threading
 import keyboard
 class mqtt_server:
-    def __init__(self):
+    def __init__(self, broker = 'pldindustries.com', port = 1883, topic = '/group13x', client_id = 'Group_13', username = 'app_client', password = 'app@1234', break_condition = 0):
         # Server information
-        self.broker = 'pldindustries.com'
-        self.port = 1883
-        self.topic = '/group13x'
-        self.client_id = 'Group_13'
-        self.username = 'app_client'
-        self.password = 'app@1234'
-        self.break_condition = 0
+        self.broker = broker
+        self.port = port
+        self.topic = topic
+        self.client_id = client_id
+        self.username = username
+        self.password = password
+        self.break_condition = break_condition
         # configure mqtt client
         self.client = paho.Client(self.client_id)
         self.client.username_pw_set(self.username, self.password)
