@@ -2,7 +2,6 @@ import time
 import paho.mqtt.client as paho
 import numpy as np
 import threading
-#import keyboard
 #import os
 import json
 class mqtt_server:
@@ -14,19 +13,12 @@ class mqtt_server:
         self.client_id = client_id
         self.username = username
         self.password = password
-        #self.break_condition = 0
         # configure mqtt client
         self.client = paho.Client(self.client_id)
         self.client.username_pw_set(self.username, self.password)
         print("connecting to broker ", self.broker)
         self.client.connect(self.broker, keepalive=60) #connect
-    """
-    def change_break_condition(self):
-        while(True):
-            if keyboard.is_pressed('q'):
-                self.break_condition = 1
-                return
-    """
+
     def thread_function(self, lower_val, upper_val, name, isbinary, unit, seed, sub_topic, delay): #Fuction for randomly generate a sensor value and public this value within given delay
         rng = np.random.default_rng(seed)
         sensor_previous_val = (lower_val + upper_val)/2 #Inizialization sensor previous value
@@ -59,17 +51,11 @@ class mqtt_server:
             self.client.publish(sensor_topic, json_data, qos = 0)
             #Assigning sensor value for sensor previous value 
             sensor_previous_val = sensor_val
-            """
-            #Apply break condition for this loop (if user put q button in keyboard the loop will be stop) 
-            if self.break_condition == 1:
-                break
-            """
             time.sleep(delay) 
         self.client.disconnect() #disconnect           
 if __name__ == "__main__":
     #os.system("start \"\" http://<Enter your Raspberrypi ip>/ui/")
     server = mqtt_server()
-    #break_loop = threading.Thread(target=server.change_break_condition, args=())
     Gas01 = threading.Thread(target=server.thread_function, args=(300, 10000, 'MQ-2 Gas sensor', False, 'ppm', 1, "/Gas01", 10))
     Gas02 = threading.Thread(target=server.thread_function, args=(200, 10000, 'MQ-6 Gas sensor', False, 'ppm', 2, "/Gas02", 10))
     Smoke01 = threading.Thread(target=server.thread_function, args=(0.0, 999.9, 'NOVA PM Smoke Sensor SDS011', False, 'μg/m3', 3, "/Smoke01", 10))
@@ -80,7 +66,6 @@ if __name__ == "__main__":
     Humidity02 = threading.Thread(target=server.thread_function, args=(0, 100, 'HM 1500LF Humidity sensor', False, '%RH', 8, "/Humidity02", 10))
     Motion01 = threading.Thread(target=server.thread_function, args=(0, 1, 'HC - SR501 PIR motion sensor', True, 'No unit', 9, "/Motion01", 10))
     Power01 = threading.Thread(target=server.thread_function, args=(-60, 20, 'Boonton RTP4118 Power sensor', False, 'dBm', 10, "/Power01", 10))
-    #break_loop.start()
     Gas01.start()
     Gas02.start()
     Smoke01.start()
