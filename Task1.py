@@ -2,6 +2,7 @@ import time
 import paho.mqtt.client as paho
 import numpy as np
 import threading
+import random
 #import os
 import json
 class mqtt_server:
@@ -24,37 +25,36 @@ class mqtt_server:
         sensor_previous_val = (lower_val + upper_val)/2 #Inizialization sensor previous value
         sensor_topic = self.topic + sub_topic #Get the topic
         while(True):
-            #Calculate virtual sensor value with randomly
-            rand_num = rng.integers(low=lower_val, high=upper_val, size=1)
-            sensor_val = 0.8*sensor_previous_val + 0.2*rand_num[0]
-            sensor_val = round(sensor_val, 2)
-            #Check tha value is inside the range
-            if (sensor_val<lower_val): 
-                sensor_val = lower_val
-            elif (sensor_val>upper_val):
-                sensor_val = upper_val
-            #For binary output map to 0 and 1
-            if (isbinary):
-                output_val = round(sensor_val)
+            if (isbinary):            
+                rand_num = random.uniform(0,1)
+                sensor_val = round(rand_num)
             else:
-                output_val = sensor_val
+                #Calculate virtual sensor value with randomly
+                rand_num = rng.integers(low=lower_val, high=upper_val, size=1)
+                sensor_val = 0.8*sensor_previous_val + 0.2*rand_num[0]
+                sensor_val = round(sensor_val, 2)
+                #Check tha value is inside the range
+                if (sensor_val<lower_val): 
+                    sensor_val = lower_val
+                elif (sensor_val>upper_val):
+                    sensor_val = upper_val
             #Make output in jason format
             data = {}
             data['lower_sensor_val'] = '{}'.format(lower_val)
-            data['current_sensor_val'] = '{}'.format(output_val)
+            data['current_sensor_val'] = '{}'.format(sensor_val)
             data['upper_sensor_val'] = '{}'.format(upper_val)
             data['name'] = '{}'.format(name)
             data['unit'] = '{}'.format(unit)
             json_data = json.dumps(data)
             # Public json_data for mqtt server
-            print("Publishing {} value: {}".format(name, output_val))
+            print("Publishing {} value: {}".format(name, sensor_val))
             self.client.publish(sensor_topic, json_data, qos = 0)
             #Assigning sensor value for sensor previous value 
             sensor_previous_val = sensor_val
             time.sleep(delay) 
         self.client.disconnect() #disconnect           
 if __name__ == "__main__":
-    #os.system("start \"\" http://<Enter your Raspberrypi ip>/ui/")
+    #os.system("start \"\" http://<Enter your Raspberrypi ip>:1880/ui/")
     server = mqtt_server()
     Gas01 = threading.Thread(target=server.thread_function, args=(300, 10000, 'MQ-2 Gas sensor', False, 'ppm', 1, "/Gas01", 10))
     Gas02 = threading.Thread(target=server.thread_function, args=(200, 10000, 'MQ-6 Gas sensor', False, 'ppm', 2, "/Gas02", 10))
